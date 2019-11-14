@@ -29,4 +29,6 @@ public class HomeFragment extends Fragment {
         binding.setFragment(this);
         return rootView;
     }
+    public void presslyrics(View view){
+    }
 }

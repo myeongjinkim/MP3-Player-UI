@@ -2,7 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.test5.ui.home.HomeFragment">
+    tools:context="com.example.hw_3.ui.home.HomeFragment">
     <data>
         <variable
             name="fragment"
@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/home">
-        <TableLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
@@ -21,24 +22,94 @@
             android:layout_marginRight="10dp"
             android:stretchColumns="*">
 
-            <TextView
-                android:layout_width="0dp"
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scrollbars="none"
                 android:layout_weight="6"
-                android:id="@+id/text1"
-                android:text="Album jacket" />
+                android:fillViewport="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <!--Button
+                        android:id="@+id/button1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="1. 동해물과 백두산이 마르고 닳도록
+하느님이 보우하사 우리나라 만세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+2. 남산 위에 저 소나무 철갑을 두른 듯
+바람 서리 불변함은 우리 기상일세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+3. 가을 하늘 공활한데 높고 구름 없이
+밝은 달은 우리 가슴 일편단심일세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+4. 이 기상과 이 맘으로 충성을 다하여
+괴로우나 즐거우나 나라 사랑하세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+"
+                        android:textSize="50dp"/>-->
+
+                    <TextView
+                        android:id="@+id/click"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="1. 동해물과 백두산이 마르고 닳도록
+하느님이 보우하사 우리나라 만세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+2. 남산 위에 저 소나무 철갑을 두른 듯
+바람 서리 불변함은 우리 기상일세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+3. 가을 하늘 공활한데 높고 구름 없이
+밝은 달은 우리 가슴 일편단심일세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+
+4. 이 기상과 이 맘으로 충성을 다하여
+괴로우나 즐거우나 나라 사랑하세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+"
+                        android:textSize="55sp"
+                        android:onClick="@{(view) -> fragment.presslyrics(view)}"
+                        android:clickable="true"/>
+
+
+                </LinearLayout>
+
+
+
+            </ScrollView>
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/text2"
                 android:text="title" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="3"
                 android:id="@+id/text3"
                 android:text="control button" />
 
-        </TableLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
