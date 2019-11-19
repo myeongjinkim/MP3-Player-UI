@@ -20,31 +20,25 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     public FragmentHomeBinding binding;
     private boolean start = false;
+    private TextView textView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        textView = rootView.findViewById(R.id.lyric);
         binding = DataBindingUtil.bind(rootView);
         binding.setFragment(this);
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.lyric);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
         return rootView;
     }
     public void presslyrics(View view){
+        System.out.println(this.textView.getText());
         System.out.println("출력");
-        homeViewModel.setLyrics();
-        homeViewModel.setText();
+        this.textView.setText("change2");
+        System.out.println(this.textView.getText());
     }
 }
