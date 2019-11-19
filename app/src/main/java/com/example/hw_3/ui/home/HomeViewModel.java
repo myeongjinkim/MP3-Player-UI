@@ -8,13 +8,20 @@ public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    private String lyrics=null;
+    private String lyrics="";
     public HomeViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
 
     public String getLyrics(){
+        if(lyrics.equals("")){
+            LyricsSetting();
+        }
+        return lyrics;
+    }
+    private void LyricsSetting(){
+        //가사 가져오는 부분
         lyrics="\"1. 동해물과 백두산이 마르고 닳도록\n" +
                 "하느님이 보우하사 우리나라 만세\n" +
                 "무궁화 삼천리 화려 강산\n" +
@@ -35,9 +42,7 @@ public class HomeViewModel extends ViewModel {
                 "무궁화 삼천리 화려 강산\n" +
                 "대한 사람 대한으로 길이 보전하세\n" +
                 "\"";
-        return lyrics;
     }
-    private void getText(){
-        mText.setValue(lyrics);
-    }
+    public void setAlbum(){ } // 앨범자켓 세팅하는 부분
+    private void albumSetting(){ }//앨범자켓 가져오는 부분
 }
