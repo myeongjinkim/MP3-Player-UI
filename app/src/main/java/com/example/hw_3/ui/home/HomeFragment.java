@@ -20,7 +20,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     public FragmentHomeBinding binding;
     private boolean start = false;
-    private TextView textView;
+    private TextView lyricsTextView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +30,19 @@ public class HomeFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        textView = rootView.findViewById(R.id.lyric);
+        lyricsTextView = rootView.findViewById(R.id.lyric);
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+
+
         binding = DataBindingUtil.bind(rootView);
         binding.setFragment(this);
         return rootView;
     }
     public void presslyrics(View view){
-        System.out.println(this.textView.getText());
-        System.out.println("출력");
-        this.textView.setText("change2");
-        System.out.println(this.textView.getText());
+        if(this.lyricsTextView.getText().equals("")){
+            this.lyricsTextView.setText(homeViewModel.getLyrics());
+        }else{
+            this.lyricsTextView.setText("");
+        }
     }
 }
