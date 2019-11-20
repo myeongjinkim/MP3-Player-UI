@@ -101,13 +101,47 @@
                 android:text="Unknown Artist" />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:id="@+id/text6"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="control button" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
+            <ImageButton
+                android:layout_width= "0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id = "@+id/imageButton1"
+                android:background="@android:color/transparent"
+                android:src = "@drawable/ic_action_repeat"/>
+            <ImageButton
+                android:layout_width= "0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:id = "@+id/imageButton2"
+                android:src = "@drawable/ic_action_left"/>
+            <ImageButton
+                android:layout_width= "0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:id = "@+id/imageButton3"
+                android:src = "@drawable/ic_action_play"/>
+            <ImageButton
+                android:layout_width= "0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:id = "@+id/imageButton4"
+                android:src = "@drawable/ic_action_right"/>
+            <ImageButton
+                android:layout_width= "0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:id = "@+id/imageButton5"
+                android:src = "@drawable/ic_action_shuffle"/>
+        </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
