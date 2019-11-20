@@ -11,6 +11,4 @@
     <string name="menu_gallery">최근</string>
     <string name="menu_slideshow">음악 라이브러리</string>
     <string name="menu_tools">설정</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
 </resources>
