@@ -40,7 +40,7 @@
                         android:layout_height="match_parent"
                         android:textSize="20sp"
                         android:onClick="@{(view) -> fragment.presslyrics(view)}"
-                        android:gravity="center_horizontal"
+                        android:gravity="center_horizontal|center_vertical"
                         android:clickable="true"/>
 
                 </LinearLayout>
@@ -52,7 +52,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/text2"
-                android:gravity="center_horizontal"
+                android:gravity="center_horizontal|center_vertical"
                 android:textSize="30sp"
                 android:text="unknown" />
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/text3"
-                android:gravity="center_horizontal"
+                android:gravity="center_horizontal|center_vertical"
                 android:textSize="20sp"
                 android:text="unknown" />
 
