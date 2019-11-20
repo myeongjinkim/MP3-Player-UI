@@ -32,8 +32,6 @@ public class HomeFragment extends Fragment {
         lyricsTextView = rootView.findViewById(R.id.lyric);
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-
-
         homeViewModel.setAlbum(); //앨범자켓 설정
 
         binding = DataBindingUtil.bind(rootView);
