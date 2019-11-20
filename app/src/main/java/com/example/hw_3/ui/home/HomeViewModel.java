@@ -22,7 +22,7 @@ public class HomeViewModel extends ViewModel {
     }
     private void LyricsSetting(){
         //가사 가져오는 부분
-        lyrics="\"1. 동해물과 백두산이 마르고 닳도록\n" +
+        lyrics="1. 동해물과 백두산이 마르고 닳도록\n" +
                 "하느님이 보우하사 우리나라 만세\n" +
                 "무궁화 삼천리 화려 강산\n" +
                 "대한 사람 대한으로 길이 보전하세\n" +
@@ -40,8 +40,7 @@ public class HomeViewModel extends ViewModel {
                 "4. 이 기상과 이 맘으로 충성을 다하여\n" +
                 "괴로우나 즐거우나 나라 사랑하세\n" +
                 "무궁화 삼천리 화려 강산\n" +
-                "대한 사람 대한으로 길이 보전하세\n" +
-                "\"";
+                "대한 사람 대한으로 길이 보전하세\n";
     }
     public void setAlbum(){ } // 앨범자켓 세팅하는 부분
     private void albumSetting(){ }//앨범자켓 가져오는 부분

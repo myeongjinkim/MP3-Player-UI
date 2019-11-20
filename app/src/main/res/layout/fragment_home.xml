@@ -38,13 +38,12 @@
                         android:id="@+id/lyric"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="40sp"
+                        android:textSize="20sp"
                         android:onClick="@{(view) -> fragment.presslyrics(view)}"
+                        android:gravity="center_horizontal"
                         android:clickable="true"/>
 
                 </LinearLayout>
-
-
 
             </ScrollView>
 
@@ -53,13 +52,23 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/text2"
-                android:text="title" />
+                android:gravity="center_horizontal"
+                android:textSize="30sp"
+                android:text="unknown" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/text3"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:text="unknown" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                android:id="@+id/text3"
+                android:id="@+id/text4"
                 android:text="control button" />
 
         </LinearLayout>
