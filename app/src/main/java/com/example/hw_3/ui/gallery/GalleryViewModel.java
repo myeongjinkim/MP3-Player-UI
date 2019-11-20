@@ -10,7 +10,7 @@ public class GalleryViewModel extends ViewModel {
 
     public GalleryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("음악 라이브러리 입니다");
+        mText.setValue("저장된 음악이 없습니다");
     }
 
     public LiveData<String> getText() {
