@@ -2,10 +2,11 @@
 
 ## 테스트 환경  
 유형 : Pixel 2 API 24  
-목표 : 5.1  
-PC OS 테스트 : Windows10 x64  
+타겟 안드로이드 버전 : 7.0  
+안드로이드 스튜디오 버전 : 3.5  
+테스트 PC OS : Windows10 x64  
 테스트 PC 프로세서 : Intel i5-8265U  
-PC RAM 테스트 : 8GB  
+테스트 PC RAM : 8GB  
 사용 된 메모리 : 1232Mb 미만  
 사용 된 CPU : 15 % 미만
 
