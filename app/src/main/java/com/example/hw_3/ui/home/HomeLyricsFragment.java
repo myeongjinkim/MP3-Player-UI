@@ -24,11 +24,12 @@ public class HomeLyricsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_lyrics, container, false);
-        lyricsTextView = rootView.findViewById(R.id.lyric);
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        lyricsTextView = rootView.findViewById(R.id.lyrics);
+        homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
         homeViewModel.getLyrics().observe(this, new Observer<String>() {
             @Override
@@ -42,11 +43,6 @@ public class HomeLyricsFragment extends Fragment {
         return rootView;
     }
     public void presslyrics(View view){
-        /*if(this.lyricsTextView.getText().equals("")){
-            this.lyricsTextView.setText(homeViewModel.getLyrics().toString());
-        }else{
-            this.lyricsTextView.setText("");
-            homeViewModel.setAlbum();//앨범자켓 설정
-        }*/
+        homeViewModel.LyricsSetting();
     }
 }

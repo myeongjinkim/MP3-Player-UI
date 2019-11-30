@@ -18,24 +18,24 @@ import com.example.hw_3.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
-    private FragmentTransaction ft;
     private HomeViewModel homeViewModel;
+
+    private FragmentTransaction ft;
     public FragmentHomeBinding binding;
     private HomeLyricsFragment homeLyricsFragment;
     private boolean start = false;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 화면 전환 프래그먼트 선언 및 초기 화면 설정
         ft = getChildFragmentManager().beginTransaction();
         homeLyricsFragment = new HomeLyricsFragment();
     }
-        public View onCreateView(@NonNull LayoutInflater inflater,
-                ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
+        replacec();
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
         binding = DataBindingUtil.bind(rootView);
@@ -47,5 +47,4 @@ public class HomeFragment extends Fragment {
         ft.replace(R.id.replace, homeLyricsFragment);
         ft.commit();
     }
-
 }

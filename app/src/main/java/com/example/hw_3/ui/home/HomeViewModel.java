@@ -19,7 +19,6 @@ public class HomeViewModel extends ViewModel {
         }
         return lyrics;
     }
-
     public void LyricsSetting(){
         //가사 가져오는 부분
         lyrics.setValue("1. 동해물과 백두산이 마르고 닳도록\n" +
