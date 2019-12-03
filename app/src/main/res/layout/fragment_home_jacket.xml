@@ -19,14 +19,14 @@
             android:layout_height="match_parent">
 
 
-            <TextView
+            <ImageView
                 android:id="@+id/Jacket"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="20sp"
-                android:onClick="@{(view) -> fragment.pressJacket(view)}"
-                android:gravity="center_horizontal|center_vertical"
-                android:clickable="true"/>
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src = "@drawable/ic_no_image"
+                android:onClick="@{(view) -> fragment.pressJacket(view)}"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
