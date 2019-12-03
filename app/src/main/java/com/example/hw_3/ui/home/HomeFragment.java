@@ -23,26 +23,38 @@ public class HomeFragment extends Fragment {
     private FragmentTransaction ft;
     public FragmentHomeBinding binding;
     private HomeLyricsFragment homeLyricsFragment;
+    private HomeJacketFragment homeJacketFragment;
     private boolean start = false;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 화면 전환 프래그먼트 선언 및 초기 화면 설정
-        ft = getChildFragmentManager().beginTransaction();
         homeLyricsFragment = new HomeLyricsFragment();
+        homeJacketFragment = new HomeJacketFragment();
+        replaceToJacket();
     }
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        replacec();
+
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
+
+        homeViewModel.LyricsSetting();
 
         binding = DataBindingUtil.bind(rootView);
         binding.setFragment(this);
         return rootView;
     }
-    public void replacec(){
+
+    public void replaceToJacket(){
+        ft = getChildFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+        ft.replace(R.id.replace, homeJacketFragment);
+        ft.commit();
+    }
+    public void replaceToLyrics(){
+        ft = getChildFragmentManager().beginTransaction();
         ft.addToBackStack(null);
         ft.replace(R.id.replace, homeLyricsFragment);
         ft.commit();

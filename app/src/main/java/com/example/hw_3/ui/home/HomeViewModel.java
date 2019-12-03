@@ -1,5 +1,8 @@
 package com.example.hw_3.ui.home;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -43,4 +46,5 @@ public class HomeViewModel extends ViewModel {
     }
     public void setAlbum(){ } // 앨범자켓 세팅하는 부분
     private void albumSetting(){ }//앨범자켓 가져오는 부분
+
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -16,9 +17,10 @@ import com.example.hw_3.R;
 import com.example.hw_3.databinding.FragmentHomeJacketBinding;
 
 public class HomeJacketFragment  extends Fragment {
-    private TextView lyricsTextView;
     private HomeViewModel homeViewModel;
+    private HomeFragment homeFragment;
     public FragmentHomeJacketBinding binding;
+    private FragmentTransaction ft;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,22 +29,17 @@ public class HomeJacketFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_jacket, container, false);
-        lyricsTextView = rootView.findViewById(R.id.Jacket);
+
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
-        homeViewModel.getLyrics().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                lyricsTextView.setText(s);
-            }
-        });
 
         binding = DataBindingUtil.bind(rootView);
         binding.setFragment(this);
         return rootView;
     }
     public void pressJacket(View view){
-        homeViewModel.LyricsSetting();
+        homeFragment = (HomeFragment)getParentFragment();
+        homeFragment.replaceToLyrics();
     }
 
 }

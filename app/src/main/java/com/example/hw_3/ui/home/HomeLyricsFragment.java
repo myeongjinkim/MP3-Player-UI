@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -19,7 +20,9 @@ import com.example.hw_3.databinding.FragmentHomeLyricsBinding;
 public class HomeLyricsFragment extends Fragment {
     private TextView lyricsTextView;
     private HomeViewModel homeViewModel;
+    HomeFragment homeFragment;
     public FragmentHomeLyricsBinding binding;
+    private FragmentTransaction ft;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,9 @@ public class HomeLyricsFragment extends Fragment {
         binding.setFragment(this);
         return rootView;
     }
-    public void presslyrics(View view){
-        homeViewModel.LyricsSetting();
+    public void pressLyrics(View view){
+        homeFragment = (HomeFragment)getParentFragment();
+        homeFragment.replaceToJacket();
     }
+
 }
