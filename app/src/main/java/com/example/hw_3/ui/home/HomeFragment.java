@@ -6,6 +6,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -82,7 +83,9 @@ public class HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
                 if(fromUser) {
                     mediaPlayer.seekTo(progress);
-                    nowSeekText.setText(changeTime(nowSeek));
+                    nowSeek = progress;
+                    Message msg =handler.obtainMessage();
+                    handler.sendMessage(msg);
                 }
             }
         });
@@ -117,6 +120,7 @@ public class HomeFragment extends Fragment {
     public void pressPlay(View v){
         if(mediaPlayer.isPlaying()){
             System.out.println("멈춤");
+            ((ImageButton)v).setImageResource(R.drawable.ic_action_play);
             mediaPlayer.stop();
             try {
                 mediaPlayer.prepare();
@@ -126,6 +130,8 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }else {
+            ((ImageButton)v).setImageResource(R.drawable.ic_action_stop);
+            nowSeek = mediaPlayer.getCurrentPosition();
             mediaPlayer.seekTo(nowSeek); // 일시정지 시점으로 이동
             mediaPlayer.start();
             System.out.println("실행");
@@ -142,9 +148,6 @@ public class HomeFragment extends Fragment {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    nowSeek = mediaPlayer.getCurrentPosition();
-                    seekbar.setProgress(nowSeek);
-
                     Message msg =handler.obtainMessage();
                     handler.sendMessage(msg);
                 }
@@ -156,6 +159,8 @@ public class HomeFragment extends Fragment {
     Handler handler = new Handler(){
 
         public void handleMessage(Message msg){
+            nowSeek = mediaPlayer.getCurrentPosition();
+            seekbar.setProgress(nowSeek);
             nowSeekText.setText(changeTime(nowSeek));
         }
     };
