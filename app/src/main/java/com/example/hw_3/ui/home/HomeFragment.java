@@ -114,13 +114,30 @@ public class HomeFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mediaPlayer.seekTo(0);
-            seekbar.setProgress(0);
         }else {
             mediaPlayer.start();
             System.out.println("실행");
-
-            //Thread();
+            Thread();
         }
     }
+    public void Thread(){
+        System.out.println("start "+ mediaPlayer.getCurrentPosition());
+        Runnable task = new Runnable(){
+            public void run(){
+                while(mediaPlayer.isPlaying()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    seekbar.setProgress(mediaPlayer.getCurrentPosition());
+                    System.out.println("ing "+ mediaPlayer.getCurrentPosition());
+                }
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+
 }
