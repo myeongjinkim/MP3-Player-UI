@@ -10,12 +10,24 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> lyrics;
+    private Boolean check;
 
     public HomeViewModel() {
         lyrics = new MutableLiveData<>();
         lyrics.setValue("This is home fragment");
+        check = true;
     }
 
+    public Boolean getCheck(){
+        return check;
+    }
+    public void setCheck(){
+        if(check){
+            check = false;
+        }else{
+            check=true;
+        }
+    }
     public LiveData<String> getLyrics(){
         if(lyrics.equals("")){
             LyricsSetting();

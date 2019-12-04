@@ -22,7 +22,6 @@ public class HomeLyricsFragment extends Fragment {
     private HomeViewModel homeViewModel;
     HomeFragment homeFragment;
     public FragmentHomeLyricsBinding binding;
-    private FragmentTransaction ft;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +47,7 @@ public class HomeLyricsFragment extends Fragment {
     public void pressLyrics(View view){
         homeFragment = (HomeFragment)getParentFragment();
         homeFragment.replaceToJacket();
+        homeViewModel.setCheck();
     }
 
 }

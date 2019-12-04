@@ -20,7 +20,6 @@ public class HomeJacketFragment  extends Fragment {
     private HomeViewModel homeViewModel;
     private HomeFragment homeFragment;
     public FragmentHomeJacketBinding binding;
-    private FragmentTransaction ft;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +39,7 @@ public class HomeJacketFragment  extends Fragment {
     public void pressJacket(View view){
         homeFragment = (HomeFragment)getParentFragment();
         homeFragment.replaceToLyrics();
+        homeViewModel.setCheck();
     }
 
 }
