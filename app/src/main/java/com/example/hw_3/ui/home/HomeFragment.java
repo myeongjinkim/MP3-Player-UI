@@ -1,6 +1,8 @@
 package com.example.hw_3.ui.home;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +32,15 @@ public class HomeFragment extends Fragment {
     private HomeJacketFragment homeJacketFragment;
     private boolean start = false;
     private boolean check =true;
-    private int nowSeek;
 
     //mp3
     private MediaPlayer mediaPlayer;
-    SeekBar seekbar;
+    private SeekBar seekbar;
+    private int nowSeek;
+    private int maxSeek;
+    private TextView maxSeekText;
+    private TextView nowSeekText;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +58,13 @@ public class HomeFragment extends Fragment {
 
         mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dont_look_back_in_anger);
         seekbar = (SeekBar)rootView.findViewById(R.id.seekBar);
-        seekbar.setMax(mediaPlayer.getDuration());
+        maxSeek= mediaPlayer.getDuration();
+        seekbar.setMax(maxSeek);
 
 
+        nowSeekText = (TextView) rootView.findViewById(R.id.nowSeekTextView);
+        maxSeekText = (TextView) rootView.findViewById(R.id.maxSeekTextView);
+        maxSeekText.setText(changeTime(maxSeek));
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -70,12 +80,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
-                if(fromUser)
+                if(fromUser) {
                     mediaPlayer.seekTo(progress);
+                    nowSeekText.setText(changeTime(nowSeek));
+                }
             }
         });
-
-
 
 
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
@@ -132,13 +142,38 @@ public class HomeFragment extends Fragment {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    seekbar.setProgress(mediaPlayer.getCurrentPosition());
                     nowSeek = mediaPlayer.getCurrentPosition();
+                    seekbar.setProgress(nowSeek);
+
+                    Message msg =handler.obtainMessage();
+                    handler.sendMessage(msg);
                 }
             }
         };
         Thread thread = new Thread(task);
         thread.start();
+    }
+    Handler handler = new Handler(){
+
+        public void handleMessage(Message msg){
+            nowSeekText.setText(changeTime(nowSeek));
+        }
+    };
+    private String changeTime(int intTime){
+        String min;
+        String sec;
+        intTime = intTime/1000;
+        if((intTime/60)<10){
+            min = "0"+Integer.toString(intTime/60);
+        }else{
+            min = Integer.toString(intTime/60);
+        }
+        if((intTime%60)<10){
+            sec= "0"+Integer.toString(intTime%60);
+        }else{
+            sec= Integer.toString(intTime%60);
+        }
+        return min+":"+sec;
     }
 
 }
