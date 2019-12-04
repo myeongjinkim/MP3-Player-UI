@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
     private HomeJacketFragment homeJacketFragment;
     private boolean start = false;
     private boolean check =true;
+    private int nowSeek;
 
     //mp3
     private MediaPlayer mediaPlayer;
@@ -115,13 +116,13 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }else {
+            mediaPlayer.seekTo(nowSeek); // 일시정지 시점으로 이동
             mediaPlayer.start();
             System.out.println("실행");
             Thread();
         }
     }
     public void Thread(){
-        System.out.println("start "+ mediaPlayer.getCurrentPosition());
         Runnable task = new Runnable(){
             public void run(){
                 while(mediaPlayer.isPlaying()){
@@ -132,7 +133,7 @@ public class HomeFragment extends Fragment {
                         e.printStackTrace();
                     }
                     seekbar.setProgress(mediaPlayer.getCurrentPosition());
-                    System.out.println("ing "+ mediaPlayer.getCurrentPosition());
+                    nowSeek = mediaPlayer.getCurrentPosition();
                 }
             }
         };
