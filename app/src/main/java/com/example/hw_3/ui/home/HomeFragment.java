@@ -21,6 +21,13 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.hw_3.R;
 import com.example.hw_3.databinding.FragmentHomeBinding;
 
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.id3.AbstractID3v2Tag;
+
+import java.io.File;
 import java.io.IOException;
 
 public class HomeFragment extends Fragment {
@@ -43,6 +50,7 @@ public class HomeFragment extends Fragment {
     private int maxSeek;
     private TextView maxSeekText;
     private TextView nowSeekText;
+    private File fs;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,10 +72,13 @@ public class HomeFragment extends Fragment {
         maxSeek= mediaPlayer.getDuration();
         seekbar.setMax(maxSeek);
 
-
+        titleText = (TextView) rootView.findViewById(R.id.music_title);
+        artistText = (TextView) rootView.findViewById(R.id.music_artist);
         nowSeekText = (TextView) rootView.findViewById(R.id.nowSeekTextView);
         maxSeekText = (TextView) rootView.findViewById(R.id.maxSeekTextView);
         maxSeekText.setText(changeTime(maxSeek));
+
+
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -86,8 +97,7 @@ public class HomeFragment extends Fragment {
                 if(fromUser) {
                     mediaPlayer.seekTo(progress);
                     nowSeek = progress;
-                    Message msg =handler.obtainMessage();
-                    handler.sendMessage(msg);
+                    nowSeekText.setText(changeTime(nowSeek));
                 }
             }
         });
@@ -95,19 +105,13 @@ public class HomeFragment extends Fragment {
 
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
-        titleText = (TextView) rootView.findViewById(R.id.music_title);
-        artistText = (TextView) rootView.findViewById(R.id.music_artist);
-
-        titleText.setText(homeViewModel.getTitle());
-        artistText.setText(homeViewModel.getArtist());
-
+        music();
 
         if( homeViewModel.getCheck()){
             replaceToJacket();
         }else{
             replaceToLyrics();
         }
-        homeViewModel.LyricsSetting();
 
         binding = DataBindingUtil.bind(rootView);
         binding.setFragment(this);
@@ -186,6 +190,36 @@ public class HomeFragment extends Fragment {
             sec= Integer.toString(intTime%60);
         }
         return min+":"+sec;
+    }
+    public void music(){
+        fs = new File("/data/data/com.example.hw_3/music/time_is_running_out.mp3");
+
+
+        if(fs.isFile()){
+            System.out.println("들어감");
+            String decoding = "ISO-8859-1";
+            String encoding = "EUC-KR";
+
+
+            //File list[] = fs.listFiles();
+            //for(File f : list){
+            try{
+                MP3File mp3 = (MP3File) AudioFileIO.read(fs);
+                AbstractID3v2Tag tag2 = mp3.getID3v2Tag();
+
+                Tag tag = mp3.getTag();
+                homeViewModel.LyricsSetting(tag.getFirst(FieldKey.LYRICS));
+                titleText.setText(tag.getFirst(FieldKey.TITLE));
+                artistText.setText(tag.getFirst(FieldKey.ARTIST));
+
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            //}
+        }
+        else {
+            System.out.println("경로 틀림");
+        }
     }
 
 }

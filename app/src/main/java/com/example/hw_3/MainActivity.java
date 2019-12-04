@@ -28,9 +28,6 @@ import java.net.URI;
 
 import java.io.File;
 import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
@@ -52,12 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HomeViewModel model= ViewModelProviders.of(this).get(HomeViewModel.class);
-        music();
-        model.setLyricsText(lyrics);
-        model.setTitle(title);
-        model.setArtist(artist);
-
+        HomeViewModel model= new HomeViewModel();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -94,39 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void music(){
-        /*/data/data/com.example.hw_3/files/dont_look_back_in_anger.mp3
 
-        getResources().openRawResource(R.raw.dont_look_back_in_anger);
-        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.dont_look_back_in_anger);*/
-        fs = new File("/data/data/com.example.hw_3/music/starlight.mp3");
-
-        if(fs.isFile()){
-            System.out.println("들어감");
-            String decoding = "ISO-8859-1";
-            String encoding = "EUC-KR";
-
-
-            //File list[] = fs.listFiles();
-            //for(File f : list){
-                try{
-                    MP3File mp3 = (MP3File) AudioFileIO.read(fs);
-                    AbstractID3v2Tag tag2 = mp3.getID3v2Tag();
-
-                    Tag tag = mp3.getTag();
-                    title = tag.getFirst(FieldKey.TITLE);
-                    artist = tag.getFirst(FieldKey.ARTIST);
-                    lyrics = tag.getFirst(FieldKey.LYRICS);
-
-
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                }
-            //}
-        }
-        else {
-            System.out.println("경로 틀림");
-        }
-    }
 
 }
