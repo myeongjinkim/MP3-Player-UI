@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         HomeViewModel model= ViewModelProviders.of(this).get(HomeViewModel.class);
         music();
-        System.out.println(title);
-        System.out.println(artist);
-        System.out.println(lyrics);
         model.setLyricsText(lyrics);
         model.setTitle(title);
         model.setArtist(artist);

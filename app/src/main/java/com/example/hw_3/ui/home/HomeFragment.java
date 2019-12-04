@@ -128,7 +128,6 @@ public class HomeFragment extends Fragment {
     }
     public void pressPlay(View v){
         if(mediaPlayer.isPlaying()){
-            System.out.println("멈춤");
             ((ImageButton)v).setImageResource(R.drawable.ic_action_play);
             mediaPlayer.stop();
             try {
@@ -143,7 +142,6 @@ public class HomeFragment extends Fragment {
             nowSeek = mediaPlayer.getCurrentPosition();
             mediaPlayer.seekTo(nowSeek); // 일시정지 시점으로 이동
             mediaPlayer.start();
-            System.out.println("실행");
             Thread();
         }
     }

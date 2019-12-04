@@ -10,15 +10,17 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> lyrics;
-    private MutableLiveData<String> title;
-    private MutableLiveData<String> artist;
+    //private MutableLiveData<String> title;
+    //private MutableLiveData<String> artist;
     private Boolean check;
     private String lyricsText;
+    private String title;
+    private String artist;
 
     public HomeViewModel() {
         lyrics = new MutableLiveData<>();
-        title = new MutableLiveData<>();
-        artist = new MutableLiveData<>();
+        //title = new MutableLiveData<>();
+        //artist = new MutableLiveData<>();
         lyrics.setValue("This is home fragment");
         check = true;
     }
@@ -50,17 +52,21 @@ public class HomeViewModel extends ViewModel {
     private void albumSetting(){ }//앨범자켓 가져오는 부분
 
     public void setTitle(String text){
-        title.setValue(text);
+        //title.setValue(text);
+        title=text;
     }
     public void setArtist(String text){
-        artist.setValue(text);
+        //artist.setValue(text);
+        artist=text;
     }
     public String getTitle(){
-        return title.getValue();
+        //return title.getValue();
+        return title;
     }
 
     public String getArtist(){
-        return artist.getValue();
+        //return artist.getValue();
+        return artist;
     }
 
 }
