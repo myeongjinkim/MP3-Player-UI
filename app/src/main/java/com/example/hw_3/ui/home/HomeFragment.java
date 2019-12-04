@@ -33,6 +33,8 @@ public class HomeFragment extends Fragment {
     private HomeJacketFragment homeJacketFragment;
     private boolean start = false;
     private boolean check =true;
+    private TextView titleText;
+    private TextView artistText;
 
     //mp3
     private MediaPlayer mediaPlayer;
@@ -92,6 +94,13 @@ public class HomeFragment extends Fragment {
 
 
         homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
+
+        titleText = (TextView) rootView.findViewById(R.id.music_title);
+        artistText = (TextView) rootView.findViewById(R.id.music_artist);
+
+        titleText.setText(homeViewModel.getTitle());
+        artistText.setText(homeViewModel.getArtist());
+
 
         if( homeViewModel.getCheck()){
             replaceToJacket();

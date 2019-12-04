@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':jaudiotagger-2.2.6-SNAPSHOT', ':jaudiotagger-2.2.3', ':jaudiotagger-2.2.0-20130321.142353-1'
 rootProject.name='hw_3'

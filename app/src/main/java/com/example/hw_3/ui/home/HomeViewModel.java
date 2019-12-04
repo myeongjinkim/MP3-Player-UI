@@ -10,10 +10,15 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> lyrics;
+    private MutableLiveData<String> title;
+    private MutableLiveData<String> artist;
     private Boolean check;
+    private String lyricsText;
 
     public HomeViewModel() {
         lyrics = new MutableLiveData<>();
+        title = new MutableLiveData<>();
+        artist = new MutableLiveData<>();
         lyrics.setValue("This is home fragment");
         check = true;
     }
@@ -36,27 +41,26 @@ public class HomeViewModel extends ViewModel {
     }
     public void LyricsSetting(){
         //가사 가져오는 부분
-        lyrics.setValue("1. 동해물과 백두산이 마르고 닳도록\n" +
-                "하느님이 보우하사 우리나라 만세\n" +
-                "무궁화 삼천리 화려 강산\n" +
-                "대한 사람 대한으로 길이 보전하세\n" +
-                "\n" +
-                "2. 남산 위에 저 소나무 철갑을 두른 듯\n" +
-                "바람 서리 불변함은 우리 기상일세\n" +
-                "무궁화 삼천리 화려 강산\n" +
-                "대한 사람 대한으로 길이 보전하세\n" +
-                "\n" +
-                "3. 가을 하늘 공활한데 높고 구름 없이\n" +
-                "밝은 달은 우리 가슴 일편단심일세\n" +
-                "무궁화 삼천리 화려 강산\n" +
-                "대한 사람 대한으로 길이 보전하세\n" +
-                "\n" +
-                "4. 이 기상과 이 맘으로 충성을 다하여\n" +
-                "괴로우나 즐거우나 나라 사랑하세\n" +
-                "무궁화 삼천리 화려 강산\n" +
-                "대한 사람 대한으로 길이 보전하세\n");
+        lyrics.setValue(lyricsText);
+    }
+    public void setLyricsText(String text){
+        lyricsText=text;
     }
     public void setAlbum(){ } // 앨범자켓 세팅하는 부분
     private void albumSetting(){ }//앨범자켓 가져오는 부분
+
+    public void setTitle(String text){
+        title.setValue(text);
+    }
+    public void setArtist(String text){
+        artist.setValue(text);
+    }
+    public String getTitle(){
+        return title.getValue();
+    }
+
+    public String getArtist(){
+        return artist.getValue();
+    }
 
 }
