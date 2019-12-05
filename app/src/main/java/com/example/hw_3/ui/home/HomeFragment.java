@@ -52,7 +52,8 @@ public class HomeFragment extends Fragment {
     private TextView maxSeekText;
     private TextView nowSeekText;
     private File fs;
-    private String path;
+    private StringBuilder path;
+    private String musicPath;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,26 +62,30 @@ public class HomeFragment extends Fragment {
         // 화면 전환 프래그먼트 선언 및 초기 화면 설정
         homeLyricsFragment = new HomeLyricsFragment();
         homeJacketFragment = new HomeJacketFragment();
+        path=new StringBuilder();
+
 
     }
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        path = "/data/data/com.example.hw_3/music/time_is_running_out.mp3";
-        fs = new File(path);
-        mediaPlayer = MediaPlayer.create(getActivity(), Uri.parse(path));
-        seekbar = (SeekBar)rootView.findViewById(R.id.seekBar);
-        maxSeek= mediaPlayer.getDuration();
-        seekbar.setMax(maxSeek);
-
+        homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
         titleText = (TextView) rootView.findViewById(R.id.music_title);
         artistText = (TextView) rootView.findViewById(R.id.music_artist);
         nowSeekText = (TextView) rootView.findViewById(R.id.nowSeekTextView);
         maxSeekText = (TextView) rootView.findViewById(R.id.maxSeekTextView);
+
+
+        path.append("/data/data/com.example.hw_3/music/");
+        fs = new File(path.toString());
+
+        music();
+        mediaPlayer = MediaPlayer.create(getActivity(), Uri.parse(musicPath));
+        seekbar = (SeekBar)rootView.findViewById(R.id.seekBar);
+        maxSeek= mediaPlayer.getDuration();
+        seekbar.setMax(maxSeek);
+
         maxSeekText.setText(changeTime(maxSeek));
-
-
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -103,11 +108,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-
-        homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
-
-        music();
 
         if( homeViewModel.getCheck()){
             replaceToJacket();
@@ -195,29 +195,26 @@ public class HomeFragment extends Fragment {
     }
     public void music(){
 
-
-
-        if(fs.isFile()){
+        if(fs.isDirectory()){
             System.out.println("들어감");
             String decoding = "ISO-8859-1";
             String encoding = "EUC-KR";
 
+            File list[] = fs.listFiles();
+            for(File f : list){
+                try{
+                    MP3File mp3 = (MP3File) AudioFileIO.read(f);
+                    musicPath = f.getPath();
+                    AbstractID3v2Tag tag2 = mp3.getID3v2Tag();
+                    Tag tag = mp3.getTag();
+                    homeViewModel.LyricsSetting(tag.getFirst(FieldKey.LYRICS));
+                    titleText.setText(tag.getFirst(FieldKey.TITLE));
+                    artistText.setText(tag.getFirst(FieldKey.ARTIST));
 
-            //File list[] = fs.listFiles();
-            //for(File f : list){
-            try{
-                MP3File mp3 = (MP3File) AudioFileIO.read(fs);
-                AbstractID3v2Tag tag2 = mp3.getID3v2Tag();
-
-                Tag tag = mp3.getTag();
-                homeViewModel.LyricsSetting(tag.getFirst(FieldKey.LYRICS));
-                titleText.setText(tag.getFirst(FieldKey.TITLE));
-                artistText.setText(tag.getFirst(FieldKey.ARTIST));
-
-            }catch(Exception ex){
-                ex.printStackTrace();
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
             }
-            //}
         }
         else {
             System.out.println("경로 틀림");
