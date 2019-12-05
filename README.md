@@ -31,8 +31,8 @@
 
 ## 안드로이드 기본 구조
 
-![Alt text](./my_image/android.png)  
-![Alt text](./my_image/android_dalvik.png)  
+![Alt text](./my_image/android.jpg)  
+![Alt text](./my_image/android_dalvik.jpg)  
 
 
 화면 전환을 Activity의 전환으로 하지 않는다.   

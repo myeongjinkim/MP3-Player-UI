@@ -1,5 +1,6 @@
 package com.example.hw_3.ui.home;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
     private TextView maxSeekText;
     private TextView nowSeekText;
     private File fs;
+    private String path;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,14 +62,14 @@ public class HomeFragment extends Fragment {
         homeLyricsFragment = new HomeLyricsFragment();
         homeJacketFragment = new HomeJacketFragment();
 
-
-
     }
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dont_look_back_in_anger);
+        path = "/data/data/com.example.hw_3/music/time_is_running_out.mp3";
+        fs = new File(path);
+        mediaPlayer = MediaPlayer.create(getActivity(), Uri.parse(path));
         seekbar = (SeekBar)rootView.findViewById(R.id.seekBar);
         maxSeek= mediaPlayer.getDuration();
         seekbar.setMax(maxSeek);
@@ -192,7 +194,7 @@ public class HomeFragment extends Fragment {
         return min+":"+sec;
     }
     public void music(){
-        fs = new File("/data/data/com.example.hw_3/music/time_is_running_out.mp3");
+
 
 
         if(fs.isFile()){
