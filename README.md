@@ -29,8 +29,18 @@
 
 # 코드 구현
 
+## 안드로이드 기본 구조
+
+![Alt text](./my_image/android.png)  
+![Alt text](./my_image/android_dalvik.png)  
+
+
+화면 전환을 Activity의 전환으로 하지 않는다.   
+모든 화면의 전환은 fragment의 전환으로 구성했다.   
+
+
 ## Date Binding   
-어플리케이션에서 화면에 있는 UI요소와 데이터를 연결시키는 것이다.   
+어플리케이션에서 화면에 있는 UI요소와 데이터를 연결시키는 것으로 코드 분리를 통한 최적화의 방법이다.  
 
 
 ## AAC(Andorid Architecture Component) - viewModel   
